@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Luyện Tập Tương Tác: PET Reading Part 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .lesson-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .slide-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        .interactive-text {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+        .option-label {
+            display: block;
+            background-color: #edf2f7;
+            padding: 0.8rem 1.25rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 1rem;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+        .option-label:hover {
+            background-color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+        .option-input:checked + .option-label {
+            background-color: #63b3ed;
+            color: white;
+            border-color: #4299e1;
+            box-shadow: 0 4px 6px rgba(66, 153, 225, 0.3);
+        }
+        .option-input {
+            display: none;
+        }
+        .button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover:enabled {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .quiz-check-button {
+            background-color: #dc2626;
+            color: white;
+        }
+        .quiz-check-button:hover:enabled {
+            background-color: #b91c1c;
+        }
+        .lesson-nav-button {
+            background-color: #48bb78;
+            color: white;
+        }
+        .lesson-nav-button:hover:enabled {
+            background-color: #38a169;
+        }
+        .feedback-message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .feedback-correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback-incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .final-message {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .restart-button {
+            background-color: #f6ad55;
+            color: white;
+            margin-top: 1rem;
+        }
+        .restart-button:hover:enabled {
+            background-color: #ed8936;
+        }
+        .congratulation-girl {
+            position: fixed;
+            bottom: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 200px;
+            background-image: url('https://placehold.co/150x200/black/white?text=Congratulation+Girl');
+            background-size: cover;
+            animation: run-up 1.5s forwards, run-down 1.5s 2.5s forwards;
+            z-index: 100;
+        }
+        @keyframes run-up {
+            from { bottom: -200px; }
+            to { bottom: 20px; }
+        }
+        @keyframes run-down {
+            from { bottom: 20px; }
+            to { bottom: -200px; }
+        }
+        .hidden-girl {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Bài Luyện Tập Tương Tác: PET Reading Part 4</h1>
+
+        <div id="lesson-slides">
+            <div id="slide-0" class="lesson-slide">
+                <h2 class="slide-title">Slide 1: Giới thiệu</h2>
+                <p class="slide-content">Chào mừng bạn đến với 30 câu hỏi luyện tập Reading Part 4 của bài thi PET. Dạng bài này yêu cầu bạn điền từ còn thiếu vào chỗ trống để hoàn thành một đoạn văn.</p>
+                <p class="slide-content">Hãy tập trung vào ngữ pháp và ngữ cảnh để chọn từ chính xác nhất nhé. Chúc bạn làm bài tốt!</p>
+            </div>
+
+            <div id="slide-1" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 2: Câu hỏi 1</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I really enjoy listening to music in the evening. I have a big collection of old records, and I always play them on my record player. My favourite type of music is jazz, and my favourite artist is Louis Armstrong. His music is very relaxing and it helps me to relax after a long day at work. I also like to read a book while I am listening to it.</p>
+                    <p>I would like to try to learn to play the trumpet, but it is too ____ for me to buy one. I will just have to save up my money until I can afford one.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-1-options" class="mb-4">
+                        <input type="radio" name="quiz1" id="q1o1" value="A" class="option-input"><label for="q1o1" class="option-label">A. cheap</label>
+                        <input type="radio" name="quiz1" id="q1o2" value="B" class="option-input"><label for="q1o2" class="option-label">B. expensive</label>
+                        <input type="radio" name="quiz1" id="q1o3" value="C" class="option-input"><label for="q1o3" class="option-label">C. easy</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="1" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-1"></div>
+                </div>
+            </div>
+
+            <div id="slide-2" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 3: Câu hỏi 2</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I went to a great rock concert last weekend. The band, 'The Electric Sparks', were fantastic. They played all of my favourite songs, and the atmosphere was incredible. I was standing near the front of the stage, so I had a very good view. I bought a new T-shirt and a CD after the show. I hope they come back to our city again soon!</p>
+                    <p>I really like the new T-shirt, and the CD is great. I can't wait to see them play again, so I will buy tickets as soon as they ____ another concert in our town.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-2-options" class="mb-4">
+                        <input type="radio" name="quiz2" id="q2o1" value="A" class="option-input"><label for="q2o1" class="option-label">A. announce</label>
+                        <input type="radio" name="quiz2" id="q2o2" value="B" class="option-input"><label for="q2o2" class="option-label">B. announced</label>
+                        <input type="radio" name="quiz2" id="q2o3" value="C" class="option-input"><label for="q2o3" class="option-label">C. announces</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="2" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-2"></div>
+                </div>
+            </div>
+            
+            <div id="slide-3" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 4: Câu hỏi 3</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I recently started a new job as a barista at a coffee shop. It's a busy place, and I have to work very hard, but I really enjoy it. I've met a lot of new people, both customers and colleagues, and I'm learning how to make all kinds of delicious drinks. The manager is very friendly and patient, which makes a big difference to my work experience.</p>
+                    <p>The best part of my job is that I get to meet a lot of different people, and I really like talking to them. I have also learned how to make all kinds of coffee and tea, and my family ____ really enjoying the new drinks I make for them.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-3-options" class="mb-4">
+                        <input type="radio" name="quiz3" id="q3o1" value="A" class="option-input"><label for="q3o1" class="option-label">A. am</label>
+                        <input type="radio" name="quiz3" id="q3o2" value="B" class="option-input"><label for="q3o2" class="option-label">B. is</label>
+                        <input type="radio" name="quiz3" id="q3o3" value="C" class="option-input"><label for="q3o3" class="option-label">C. are</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="3" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-3"></div>
+                </div>
+            </div>
+
+            <div id="slide-4" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 5: Câu hỏi 4</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am a big fan of music, and I love listening to all kinds of different genres. My favourite band is 'The Blue Jays', and I have all of their albums. I recently bought tickets to see them live next month, and I'm very excited. I have been listening to their music for over 10 years, and I think they are one of the best bands of all time.</p>
+                    <p>I am really looking ____ to seeing them play live, as I have never had the chance to do so before. I hope they play all of my favourite songs from their old albums.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-4-options" class="mb-4">
+                        <input type="radio" name="quiz4" id="q4o1" value="A" class="option-input"><label for="q4o1" class="option-label">A. forward</label>
+                        <input type="radio" name="quiz4" id="q4o2" value="B" class="option-input"><label for="q4o2" class="option-label">B. over</label>
+                        <input type="radio" name="quiz4" id="q4o3" value="C" class="option-input"><label for="q4o3" class="option-label">C. up</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="4" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-4"></div>
+                </div>
+            </div>
+
+            <div id="slide-5" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 6: Câu hỏi 5</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm looking for a new apartment to rent in the city centre. It needs to have at least two bedrooms and a large living room. I would also like it to be close to a park. I have a budget of £1,500 per month, which I can't go over. I would be grateful if you could let me know of any available properties that match my requirements.</p>
+                    <p>My last apartment was very small, and it only had one bedroom, so I need something much bigger. I also want to live somewhere with some outdoor space, and a park would be ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-5-options" class="mb-4">
+                        <input type="radio" name="quiz5" id="q5o1" value="A" class="option-input"><label for="q5o1" class="option-label">A. ideal</label>
+                        <input type="radio" name="quiz5" id="q5o2" value="B" class="option-input"><label for="q5o2" class="option-label">B. terrible</label>
+                        <input type="radio" name="quiz5" id="q5o3" value="C" class="option-input"><label for="q5o3" class="option-label">C. bad</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="5" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-5"></div>
+                </div>
+            </div>
+
+            <div id="slide-6" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 7: Câu hỏi 6</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I recently attended a lecture on climate change. It was a very interesting talk, and the speaker, Professor Green, was excellent. He showed us some amazing photos of the effects of global warming around the world. The most surprising part of the lecture was when he told us that we can all make a big difference by changing our daily habits. It made me feel very inspired.</p>
+                    <p>I had never really thought about how my daily habits could affect the planet before, so it was a very ____ experience for me. I am now trying to be more environmentally friendly in my everyday life.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-6-options" class="mb-4">
+                        <input type="radio" name="quiz6" id="q6o1" value="A" class="option-input"><label for="q6o1" class="option-label">A. terrible</label>
+                        <input type="radio" name="quiz6" id="q6o2" value="B" class="option-input"><label for="q6o2" class="option-label">B. surprising</label>
+                        <input type="radio" name="quiz6" id="q6o3" value="C" class="option-input"><label for="q6o3" class="option-label">C. inspiring</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="6" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-6"></div>
+                </div>
+            </div>
+
+            <div id="slide-7" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 8: Câu hỏi 7</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am learning to play the piano, and it is more difficult than I expected. My teacher, Mrs. Davies, is very kind and patient, which is helpful. I have to practice every day for at least 30 minutes. My goal is to be able to play a simple song by the end of the year. I am very motivated to achieve this.</p>
+                    <p>I would like to be able to play a more difficult song, but I know that it takes a lot of time and practice. I am very determined, so I think I will be able to ____ my goal in the end.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-7-options" class="mb-4">
+                        <input type="radio" name="quiz7" id="q7o1" value="A" class="option-input"><label for="q7o1" class="option-label">A. achieve</label>
+                        <input type="radio" name="quiz7" id="q7o2" value="B" class="option-input"><label for="q7o2" class="option-label">B. make</label>
+                        <input type="radio" name="quiz7" id="q7o3" value="C" class="option-input"><label for="q7o3" class="option-label">C. do</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="7" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-7"></div>
+                </div>
+            </div>
+            
+            <div id="slide-8" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 9: Câu hỏi 8</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I recently bought a new pair of running shoes from your website. They are very comfortable and lightweight, and they fit me perfectly. I am very happy with the quality of the shoes. However, the delivery took much longer than I expected. I hope you can improve your delivery service in the future.</p>
+                    <p>I was very pleased with the shoes, and I think they are great value for money. However, I was very disappointed with the slow delivery service, which took a long time to get my shoes to me. I think that your company should ____ on this in the future.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-8-options" class="mb-4">
+                        <input type="radio" name="quiz8" id="q8o1" value="A" class="option-input"><label for="q8o1" class="option-label">A. improve</label>
+                        <input type="radio" name="quiz8" id="q8o2" value="B" class="option-input"><label for="q8o2" class="option-label">B. improving</label>
+                        <input type="radio" name="quiz8" id="q8o3" value="C" class="option-input"><label for="q8o3" class="option-label">C. improved</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="8" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-8"></div>
+                </div>
+            </div>
+
+            <div id="slide-9" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 10: Câu hỏi 9</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm looking for a new flat to rent in the city. It needs to have at least two bedrooms and a large living room. I would also like it to be close to a park. I have a budget of £1,500 per month, which I can't go over. I would be grateful if you could let me know of any available properties that match my requirements.</p>
+                    <p>I would also like to have a balcony or a small garden where I can grow some plants. This is not a requirement, but it would be very nice to have. I hope you can find me a flat with a nice ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-9-options" class="mb-4">
+                        <input type="radio" name="quiz9" id="q9o1" value="A" class="option-input"><label for="q9o1" class="option-label">A. view</label>
+                        <input type="radio" name="quiz9" id="q9o2" value="B" class="option-input"><label for="q9o2" class="option-label">B. garden</label>
+                        <input type="radio" name="quiz9" id="q9o3" value="C" class="option-input"><label for="q9o3" class="option-label">C. balcony</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="9" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-9"></div>
+                </div>
+            </div>
+
+            <div id="slide-10" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 11: Câu hỏi 10</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I recently joined a new gym in my local area. I am very happy with the facilities there. They have a large swimming pool, a modern gym with a wide range of equipment, and a yoga studio. I have also signed up for a few group classes. The staff are all very friendly and helpful. I would recommend this gym to anyone who wants to get fit.</p>
+                    <p>I am really enjoying the yoga classes, and I feel much more relaxed after each session. I have also made some new friends in the classes, so it is a very ____ place to be. I am happy that I joined this gym.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-10-options" class="mb-4">
+                        <input type="radio" name="quiz10" id="q10o1" value="A" class="option-input"><label for="q10o1" class="option-label">A. unfriendly</label>
+                        <input type="radio" name="quiz10" id="q10o2" value="B" class="option-input"><label for="q10o2" class="option-label">B. social</label>
+                        <input type="radio" name="quiz10" id="q10o3" value="C" class="option-input"><label for="q10o3" class="option-label">C. boring</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="10" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-10"></div>
+                </div>
+            </div>
+            
+            <div id="slide-11" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 12: Câu hỏi 11</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm writing to say thank you for the wonderful party you organised for my birthday last Saturday. The food was delicious, and I had a great time with all my friends. I particularly enjoyed the music you chose, which was fantastic. I hope we can do something similar again next year!</p>
+                    <p>The party was so much fun, and I really appreciate the effort you put into it. The cake was amazing, and it was so big that we could not finish it all. Thank you again for such a wonderful ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-11-options" class="mb-4">
+                        <input type="radio" name="quiz11" id="q11o1" value="A" class="option-input"><label for="q11o1" class="option-label">A. present</label>
+                        <input type="radio" name="quiz11" id="q11o2" value="B" class="option-input"><label for="q11o2" class="option-label">B. evening</label>
+                        <input type="radio" name="quiz11" id="q11o3" value="C" class="option-input"><label for="q11o3" class="option-label">C. gift</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="11" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-11"></div>
+                </div>
+            </div>
+
+            <div id="slide-12" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 13: Câu hỏi 12</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm studying for my final exams at the moment. It's a very stressful time, and I have to study for many hours every day. My friend recommended a new app that helps you to organise your study time and take short breaks. I have started using it, and I feel much more organised. It's making a big difference to my revision.</p>
+                    <p>I would highly recommend this app to anyone who is studying for their exams, as it really helps you to manage your time and not feel so overwhelmed. I am sure that it will help me to get good ____ in my exams.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-12-options" class="mb-4">
+                        <input type="radio" name="quiz12" id="q12o1" value="A" class="option-input"><label for="q12o1" class="option-label">A. marks</label>
+                        <input type="radio" name="quiz12" id="q12o2" value="B" class="option-input"><label for="q12o2" class="option-label">B. books</label>
+                        <input type="radio" name="quiz12" id="q12o3" value="C" class="option-input"><label for="q12o3" class="option-label">C. apps</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="12" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-12"></div>
+                </div>
+            </div>
+
+            <div id="slide-13" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 14: Câu hỏi 13</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">Last summer, my family and I went on a camping trip to the mountains. The weather was beautiful, and we enjoyed walking and swimming in the lake. My parents cooked delicious meals over a campfire every evening. The only thing I didn't like was the insects, which were everywhere. Despite that, I think it was a memorable holiday.</p>
+                    <p>The weather was perfect for camping, and the scenery was absolutely beautiful. I loved spending time outdoors with my family, and I think it was a great way to escape the city and relax. We were so happy to spend some time together, and we are planning to go on another trip ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-13-options" class="mb-4">
+                        <input type="radio" name="quiz13" id="q13o1" value="A" class="option-input"><label for="q13o1" class="option-label">A. soon</label>
+                        <input type="radio" name="quiz13" id="q13o2" value="B" class="option-input"><label for="q13o2" class="option-label">B. never</label>
+                        <input type="radio" name="quiz13" id="q13o3" value="C" class="option-input"><label for="q13o3" class="option-label">C. always</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="13" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-13"></div>
+                </div>
+            </div>
+
+            <div id="slide-14" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 15: Câu hỏi 14</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I went to a great rock concert last weekend. The band, 'The Electric Sparks', were fantastic. They played all of my favourite songs, and the atmosphere was incredible. I was standing near the front of the stage, so I had a very good view. I bought a new T-shirt and a CD after the show. I hope they come back to our city again soon!</p>
+                    <p>The concert was one of the best I have ever been to, and I really enjoyed the live music. The band played so well, and the crowd was very energetic. I had such a good time that I am thinking of ____ another concert soon.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-14-options" class="mb-4">
+                        <input type="radio" name="quiz14" id="q14o1" value="A" class="option-input"><label for="q14o1" class="option-label">A. go</label>
+                        <input type="radio" name="quiz14" id="q14o2" value="B" class="option-input"><label for="q14o2" class="option-label">B. going</label>
+                        <input type="radio" name="quiz14" id="q14o3" value="C" class="option-input"><label for="q14o3" class="option-label">C. went</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="14" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-14"></div>
+                </div>
+            </div>
+            
+            <div id="slide-15" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 16: Câu hỏi 15</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I love my new computer. It's much faster than my old one, and it has a bigger screen. I use it for schoolwork, but I also play games on it with my friends. The only problem is that the battery doesn't last very long, so I have to keep it plugged in most of the time. Apart from that, it's perfect.</p>
+                    <p>My old computer was very slow and the screen was tiny, so I am very happy with the new one. The only thing I would change is the battery life, which is not great. It is a shame that it is not very portable, but I am still very ____ with my new computer.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-15-options" class="mb-4">
+                        <input type="radio" name="quiz15" id="q15o1" value="A" class="option-input"><label for="q15o1" class="option-label">A. happy</label>
+                        <input type="radio" name="quiz15" id="q15o2" value="B" class="option-input"><label for="q15o2" class="option-label">B. sad</label>
+                        <input type="radio" name="quiz15" id="q15o3" value="C" class="option-input"><label for="q15o3" class="option-label">C. angry</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="15" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-15"></div>
+                </div>
+            </div>
+
+            <div id="slide-16" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 17: Câu hỏi 16</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">For our school trip, we visited a large museum. We saw many interesting things, like dinosaur bones and ancient Egyptian mummies. The museum was so big that we couldn't see everything in one day. We had a guide who told us all about the history of the exhibits. I think everyone enjoyed learning about the past.</p>
+                    <p>My favourite part of the museum was the Egyptian mummies, which were very interesting to learn about. The guide was very knowledgeable, and he told us a lot of things that I had never heard before. I would definitely ____ the museum to anyone who is interested in history.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-16-options" class="mb-4">
+                        <input type="radio" name="quiz16" id="q16o1" value="A" class="option-input"><label for="q16o1" class="option-label">A. recommend</label>
+                        <input type="radio" name="quiz16" id="q16o2" value="B" class="option-input"><label for="q16o2" class="option-label">B. recommendable</label>
+                        <input type="radio" name="quiz16" id="q16o3" value="C" class="option-input"><label for="q16o3" class="option-label">C. recommends</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="16" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-16"></div>
+                </div>
+            </div>
+
+            <div id="slide-17" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 18: Câu hỏi 17</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I recently started a new job at a coffee shop. It's a busy place, and I have to work very hard, but I really enjoy it. I've met a lot of new people, both customers and colleagues, and I'm learning how to make all kinds of delicious drinks. The manager is very friendly and patient, which makes a big difference to my work experience.</p>
+                    <p>I feel like I am a lot more confident than I used to be, and I really like my new team. I also really enjoy getting to know the regular customers, and I always have a nice chat with them. I am very happy that I ____ this new job.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-17-options" class="mb-4">
+                        <input type="radio" name="quiz17" id="q17o1" value="A" class="option-input"><label for="q17o1" class="option-label">A. started</label>
+                        <input type="radio" name="quiz17" id="q17o2" value="B" class="option-input"><label for="q17o2" class="option-label">B. start</label>
+                        <input type="radio" name="quiz17" id="q17o3" value="C" class="option-input"><label for="q17o3" class="option-label">C. starting</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="17" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-17"></div>
+                </div>
+            </div>
+            
+            <div id="slide-18" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 19: Câu hỏi 18</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm writing to say thank you for the wonderful party you organised for my birthday last Saturday. The food was delicious, and I had a great time with all my friends. I particularly enjoyed the music you chose, which was fantastic. I hope we can do something similar again next year!</p>
+                    <p>I was so happy to spend my birthday with all of my friends and family. The party was a great success, and everyone seemed to have a good time. I really appreciate the effort you put into it, as it must have been a lot of work for you to organize. It was a very special evening for me, and I will always ____ it.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-18-options" class="mb-4">
+                        <input type="radio" name="quiz18" id="q18o1" value="A" class="option-input"><label for="q18o1" class="option-label">A. remember</label>
+                        <input type="radio" name="quiz18" id="q18o2" value="B" class="option-input"><label for="q18o2" class="option-label">B. rememberable</label>
+                        <input type="radio" name="quiz18" id="q18o3" value="C" class="option-input"><label for="q18o3" class="option-label">C. remembered</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="18" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-18"></div>
+                </div>
+            </div>
+
+            <div id="slide-19" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 20: Câu hỏi 19</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I recently finished reading a new book called 'The Midnight Mystery'. It's a detective story, and I really enjoyed it. The plot was very exciting, and I could not guess who the criminal was until the very end. The main character was also very clever and interesting. I would definitely recommend it to anyone who enjoys a good mystery novel.</p>
+                    <p>I have read a lot of mystery novels before, but this one was one of the best. The author is very good at creating a lot of suspense, and the ending was a complete surprise. I can't wait to read the author's next book when it is ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-19-options" class="mb-4">
+                        <input type="radio" name="quiz19" id="q19o1" value="A" class="option-input"><label for="q19o1" class="option-label">A. publish</label>
+                        <input type="radio" name="quiz19" id="q19o2" value="B" class="option-input"><label for="q19o2" class="option-label">B. published</label>
+                        <input type="radio" name="quiz19" id="q19o3" value="C" class="option-input"><label for="q19o3" class="option-label">C. publishing</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="19" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-19"></div>
+                </div>
+            </div>
+
+            <div id="slide-20" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 21: Câu hỏi 20</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm writing to you about the new park in our town. I was very disappointed with my visit there last weekend. The grass was very long, and there was a lot of rubbish on the ground. The play area for children was also very old and unsafe. I hope the local council will do something to improve the park for everyone.</p>
+                    <p>I believe that the park could be a wonderful place for families and children to spend time together, but it needs to be maintained better. The local council should really invest more money into improving the park, as it is a great asset for the local ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-20-options" class="mb-4">
+                        <input type="radio" name="quiz20" id="q20o1" value="A" class="option-input"><label for="q20o1" class="option-label">A. community</label>
+                        <input type="radio" name="quiz20" id="q20o2" value="B" class="option-input"><label for="q20o2" class="option-label">B. council</label>
+                        <input type="radio" name="quiz20" id="q20o3" value="C" class="option-input"><label for="q20o3" class="option-label">C. people</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="20" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-20"></div>
+                </div>
+            </div>
+            
+            <div id="slide-21" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 22: Câu hỏi 21</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I'm writing to you about the new sports centre in our town. I am disappointed with the facilities there. The swimming pool is too small, and the changing rooms are not clean enough. I hope the management will consider my suggestions to make the centre a better place for the local community.</p>
+                    <p>I believe that the sports centre has the potential to be a great place for people to get fit and stay healthy, but it needs a lot of work to improve its facilities. The management should also consider hiring more staff to keep the changing rooms clean. I hope they will take my suggestions into ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-21-options" class="mb-4">
+                        <input type="radio" name="quiz21" id="q21o1" value="A" class="option-input"><label for="q21o1" class="option-label">A. thought</label>
+                        <input type="radio" name="quiz21" id="q21o2" value="B" class="option-input"><label for="q21o2" class="option-label">B. consideration</label>
+                        <input type="radio" name="quiz21" id="q21o3" value="C" class="option-input"><label for="q21o3" class="option-label">C. notice</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="21" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-21"></div>
+                </div>
+            </div>
+            
+            <div id="slide-22" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 23: Câu hỏi 22</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am a big fan of music, and I love listening to all kinds of different genres. My favourite band is 'The Blue Jays', and I have all of their albums. I recently bought tickets to see them live next month, and I'm very excited. I have been listening to their music for over 10 years, and I think they are one of the best bands of all time.</p>
+                    <p>I have been a fan of the band since I was a teenager, and I have always wanted to see them play live. I am so happy that I finally have the chance to do so, and I am sure that it will be a night I will never ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-22-options" class="mb-4">
+                        <input type="radio" name="quiz22" id="q22o1" value="A" class="option-input"><label for="q22o1" class="option-label">A. forget</label>
+                        <input type="radio" name="quiz22" id="q22o2" value="B" class="option-input"><label for="q22o2" class="option-label">B. forgetting</label>
+                        <input type="radio" name="quiz22" id="q22o3" value="C" class="option-input"><label for="q22o3" class="option-label">C. forgot</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="22" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-22"></div>
+                </div>
+            </div>
+            
+            <div id="slide-23" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 24: Câu hỏi 23</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">My friend Sarah is a very talented artist. She paints beautiful pictures of landscapes and portraits of people. She has an exhibition of her work at a local gallery next month, and I'm very excited to go and see it. I think her paintings are incredible, and I believe she will become a famous artist one day.</p>
+                    <p>Sarah has been painting for a long time, and she has always been very good at it. I think her paintings are so good that they should be in a big gallery in the city centre. I am so proud of her, and I can't wait to see her art ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-23-options" class="mb-4">
+                        <input type="radio" name="quiz23" id="q23o1" value="A" class="option-input"><label for="q23o1" class="option-label">A. displayed</label>
+                        <input type="radio" name="quiz23" id="q23o2" value="B" class="option-input"><label for="q23o2" class="option-label">B. display</label>
+                        <input type="radio" name="quiz23" id="q23o3" value="C" class="option-input"><label for="q23o3" class="option-label">C. displaying</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="23" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-23"></div>
+                </div>
+            </div>
+            
+            <div id="slide-24" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 25: Câu hỏi 24</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">Last week, my family and I went to the new cinema downtown. The movie we saw was a comedy, and it was really funny. My brother and I laughed so much. The cinema was very modern, with comfortable seats, and they served delicious popcorn. We all had a great time and agreed to go back again next month.</p>
+                    <p>I would definitely recommend the cinema to anyone who wants to have a good time. It is a very clean and comfortable place, and the movie we saw was excellent. I was so happy that we had a great time, and I am really looking forward to going ____ next month.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-24-options" class="mb-4">
+                        <input type="radio" name="quiz24" id="q24o1" value="A" class="option-input"><label for="q24o1" class="option-label">A. over</label>
+                        <input type="radio" name="quiz24" id="q24o2" value="B" class="option-input"><label for="q24o2" class="option-label">B. back</label>
+                        <input type="radio" name="quiz24" id="q24o3" value="C" class="option-input"><label for="q24o3" class="option-label">C. forward</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="24" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-24"></div>
+                </div>
+            </div>
+
+            <div id="slide-25" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 26: Câu hỏi 25</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am writing to thank you for the wonderful gift you sent me for my birthday. The book, 'The Last Detective', is a fantastic mystery novel. I have already read half of it, and I can't wait to find out who the criminal is. Thank you so much for your thoughtfulness. I hope to see you very soon!</p>
+                    <p>I was so happy to receive the book, as I have been wanting to read it for a long time. It is a great story, and I am enjoying reading it. The author is very good at keeping you in suspense, and the ending is a complete surprise. I will definitely read more books by this author ____ the future.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-25-options" class="mb-4">
+                        <input type="radio" name="quiz25" id="q25o1" value="A" class="option-input"><label for="q25o1" class="option-label">A. in</label>
+                        <input type="radio" name="quiz25" id="q25o2" value="B" class="option-input"><label for="q25o2" class="option-label">B. at</label>
+                        <input type="radio" name="quiz25" id="q25o3" value="C" class="option-input"><label for="q25o3" class="option-label">C. on</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="25" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-25"></div>
+                </div>
+            </div>
+
+            <div id="slide-26" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 27: Câu hỏi 26</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am a big fan of music, and I love listening to all kinds of different genres. My favourite band is 'The Blue Jays', and I have all of their albums. I recently bought tickets to see them live next month, and I'm very excited. I have been listening to their music for over 10 years, and I think they are one of the best bands of all time.</p>
+                    <p>I have always wanted to see them play live, and I am so happy that I finally have the chance to do so. I have been listening to their music since I was a teenager, and they are a huge ____ in my life. I can't wait to see them play all of my favourite songs from their old albums.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-26-options" class="mb-4">
+                        <input type="radio" name="quiz26" id="q26o1" value="A" class="option-input"><label for="q26o1" class="option-label">A. influence</label>
+                        <input type="radio" name="quiz26" id="q26o2" value="B" class="option-input"><label for="q26o2" class="option-label">B. influential</label>
+                        <input type="radio" name="quiz26" id="q26o3" value="C" class="option-input"><label for="q26o3" class="option-label">C. influencing</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="26" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-26"></div>
+                </div>
+            </div>
+
+            <div id="slide-27" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 28: Câu hỏi 27</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I love my new computer. It's much faster than my old one, and it has a bigger screen. I use it for schoolwork, but I also play games on it with my friends. The only problem is that the battery doesn't last very long, so I have to keep it plugged in most of the time. Apart from that, it's perfect.</p>
+                    <p>My old computer was very slow and the screen was tiny, so I am very happy with the new one. The only thing I would change is the battery life, which is not great. It is a shame that it is not very portable, but I am still very happy with my new computer as it is so much more ____ than my old one.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-27-options" class="mb-4">
+                        <input type="radio" name="quiz27" id="q27o1" value="A" class="option-input"><label for="q27o1" class="option-label">A. useful</label>
+                        <input type="radio" name="quiz27" id="q27o2" value="B" class="option-input"><label for="q27o2" class="option-label">B. useless</label>
+                        <input type="radio" name="quiz27" id="q27o3" value="C" class="option-input"><label for="q27o3" class="option-label">C. usefuls</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="27" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-27"></div>
+                </div>
+            </div>
+
+            <div id="slide-28" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 29: Câu hỏi 28</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">Last summer, my family and I went on a camping trip to the mountains. The weather was beautiful, and we enjoyed walking and swimming in the lake. My parents cooked delicious meals over a campfire every evening. The only thing I didn't like was the insects, which were everywhere. Despite that, I think it was a memorable holiday.</p>
+                    <p>I would definitely recommend camping to anyone who likes to be outdoors. It is a great way to spend time with your family and to get away from the city. The only thing I would change is the number of insects, which were very annoying. I will definitely bring some insect ____ with me next time.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-28-options" class="mb-4">
+                        <input type="radio" name="quiz28" id="q28o1" value="A" class="option-input"><label for="q28o1" class="option-label">A. repellent</label>
+                        <input type="radio" name="quiz28" id="q28o2" value="B" class="option-input"><label for="q28o2" class="option-label">B. repelled</label>
+                        <input type="radio" name="quiz28" id="q28o3" value="C" class="option-input"><label for="q28o3" class="option-label">C. repelling</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="28" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-28"></div>
+                </div>
+            </div>
+            
+            <div id="slide-29" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 30: Câu hỏi 29</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am writing to you about the new park in our town. I was very disappointed with my visit there last weekend. The grass was very long, and there was a lot of rubbish on the ground. The play area for children was also very old and unsafe. I hope the local council will do something to improve the park for everyone.</p>
+                    <p>I believe that the park could be a wonderful place for families and children to spend time together, but it needs to be maintained better. The local council should really invest more money into improving the park, as it is a great asset for the local community. I hope they will take my suggestions into ____.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-29-options" class="mb-4">
+                        <input type="radio" name="quiz29" id="q29o1" value="A" class="option-input"><label for="q29o1" class="option-label">A. account</label>
+                        <input type="radio" name="quiz29" id="q29o2" value="B" class="option-input"><label for="q29o2" class="option-label">B. notice</label>
+                        <input type="radio" name="quiz29" id="q29o3" value="C" class="option-input"><label for="q29o3" class="option-label">C. consideration</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="29" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-29"></div>
+                </div>
+            </div>
+            
+            <div id="slide-30" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 31: Câu hỏi 30</h2>
+                <div class="interactive-text">
+                    <p class="font-bold">I am learning to play the piano, and it is more difficult than I expected. My teacher, Mrs. Davies, is very kind and patient, which is helpful. I have to practice every day for at least 30 minutes. My goal is to be able to play a simple song by the end of the year. I am very motivated to achieve this.</p>
+                    <p>I know that learning to play a musical instrument takes a lot of time and practice, but I am very determined. My goal is to be able to play a simple song by the end of the year, and I am confident that I will be able to ____ this.</p>
+                </div>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Điền từ còn thiếu vào chỗ trống.</p>
+                    <div id="quiz-30-options" class="mb-4">
+                        <input type="radio" name="quiz30" id="q30o1" value="A" class="option-input"><label for="q30o1" class="option-label">A. reach</label>
+                        <input type="radio" name="quiz30" id="q30o2" value="B" class="option-input"><label for="q30o2" class="option-label">B. arriving</label>
+                        <input type="radio" name="quiz30" id="q30o3" value="C" class="option-input"><label for="q30o3" class="option-label">C. getting</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="30" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-30"></div>
+                </div>
+            </div>
+
+            <div id="final-screen" class="lesson-slide hidden">
+                <h2 class="slide-title">Hoàn Thành Bài Luyện Tập!</h2>
+                <p class="final-message">🎉 Chúc mừng! Bạn đã hoàn thành 30 câu hỏi luyện tập PET Reading Part 4.</p>
+                <button id="restart-lesson-button" class="button restart-button w-full mt-8">Luyện tập lại</button>
+            </div>
+        </div>
+
+        <div class="congratulation-girl hidden-girl"></div>
+
+        <div class="flex justify-between items-center mt-8">
+            <button id="prev-slide-button" class="button lesson-nav-button" disabled>Slide Trước</button>
+            <span id="slide-indicator" class="text-lg font-semibold text-gray-700">Slide 1 / 31</span>
+            <button id="next-slide-button" class="button lesson-nav-button">Slide Tiếp Theo</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.lesson-slide');
+        const prevButton = document.getElementById('prev-slide-button');
+        const nextButton = document.getElementById('next-slide-button');
+        const slideIndicator = document.getElementById('slide-indicator');
+        const restartLessonButton = document.getElementById('restart-lesson-button');
+        const totalLessonSlides = slides.length - 1;
+        const congratulationGirl = document.querySelector('.congratulation-girl');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.add('hidden');
+                if (i === index) {
+                    slide.classList.remove('hidden');
+                }
+            });
+
+            prevButton.disabled = (index === 0);
+            
+            if (index < totalLessonSlides) {
+                nextButton.classList.remove('hidden');
+            } else {
+                nextButton.classList.add('hidden');
+            }
+
+            if (index < totalLessonSlides) {
+                slideIndicator.textContent = `Slide ${index + 1} / ${totalLessonSlides}`;
+            } else {
+                slideIndicator.textContent = `Hoàn thành!`;
+            }
+        }
+
+        function showCongratulationGirl() {
+            congratulationGirl.classList.remove('hidden-girl');
+            setTimeout(() => {
+                congratulationGirl.classList.add('hidden-girl');
+            }, 4000); // Hide after 4 seconds
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlideIndex < totalLessonSlides) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        restartLessonButton.addEventListener('click', () => {
+            currentSlideIndex = 0;
+            showSlide(currentSlideIndex);
+            document.querySelectorAll('.interactive-section input').forEach(input => {
+                input.disabled = false;
+                input.checked = false;
+            });
+            document.querySelectorAll('.feedback-message').forEach(feedback => {
+                feedback.classList.add('hidden');
+                feedback.textContent = '';
+                feedback.classList.remove('feedback-correct', 'feedback-incorrect');
+            });
+            document.querySelectorAll('.quiz-check-button').forEach(button => {
+                button.disabled = true;
+                button.classList.remove('hidden');
+            });
+        });
+
+        document.querySelectorAll('.quiz-check-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const quizId = e.target.dataset.quizId;
+                const correctAnswer = e.target.dataset.answer;
+                const feedbackDiv = document.getElementById(`feedback-${quizId}`);
+                const selectedOption = document.querySelector(`input[name="quiz${quizId}"]:checked`);
+                
+                feedbackDiv.classList.remove('hidden', 'feedback-correct', 'feedback-incorrect');
+                
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    feedbackDiv.classList.add('feedback-correct');
+                    feedbackDiv.textContent = 'Chính xác! 🎉';
+                    
+                    showCongratulationGirl();
+                    
+                    e.target.disabled = true;
+                    setTimeout(() => {
+                        currentSlideIndex++;
+                        showSlide(currentSlideIndex);
+                    }, 4000);
+                } else {
+                    feedbackDiv.classList.add('feedback-incorrect');
+                    feedbackDiv.textContent = 'Chưa đúng, hãy thử lại!';
+                }
+            });
+        });
+
+        document.querySelectorAll('.interactive-section input[type="radio"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const quizId = e.target.name.replace('quiz', '');
+                const checkButton = document.querySelector(`.quiz-check-button[data-quiz-id="${quizId}"]`);
+                if (checkButton) {
+                    checkButton.disabled = false;
+                }
+            });
+        });
+
+        document.querySelectorAll('.quiz-check-button').forEach(button => {
+            button.disabled = true;
+        });
+
+        showSlide(currentSlideIndex);
+    </script>
+</body>
+</html>
